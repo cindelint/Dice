@@ -47,13 +47,16 @@ class Die //models one single dice cube
 
 		roll();
 		fill(0);
+		void dots(int x, int y) {
+			ellipse(myX+size/x, myY+size/y,dot,dot);
+		}	
 		if (result == 1) {
-			ellipse(myX,myY,dot,dot);
+			dots(0,0);
 		} else if (result == 2) {
-			ellipse(myX-size/4,myY-size/4,dot,dot);
-			ellipse(myX+size/4,myY+size/4,dot,dot);
+			dots(-4,-4);
+			dots(4,4)
 		} else if (result == 3) {
-			ellipse(myX-size/3,myY-size/3,dot,dot);
+			dots(-3,-3);
 			ellipse(myX,myY,dot,dot);
 			ellipse(myX+size/3,myY+size/3,dot,dot);
 		} else if (result == 4) {
@@ -77,3 +80,4 @@ class Die //models one single dice cube
 		}
 	}
 }
+
