@@ -14,8 +14,9 @@ import java.io.IOException;
 
 public class Dice extends PApplet {
 
-String hand[] = new String[13];
+String hand[] = new String[52];
 int cardIndex;
+
 
 public void setup() {
 	
@@ -27,21 +28,24 @@ public void setup() {
 
 public void draw() {
 	cardIndex = 0;
-	for (int x=0; x<13; x++) {
-		Card one = new Card(55*x+40, 150);
-		one.show();
-		one.addToHand();
+	for (int y=0; y<4; y++) {
+		for (int x=0; x<13; x++) {
+			Card one = new Card(55*x+40, y*75+40);
+			one.show();
+		}
 	}
+	println(hand);
+	println(search());
 }
 
 public void mousePressed() {
 	redraw();
 }
 
-public boolean search(String x) { //true if it exists within hand
+public boolean search() { //true if it exists within hand
 		boolean exist = false;
-		for (int i=0; i<13; i++) {
-			if (hand[i] == x) {
+		for (int i=0; i<hand.length; i++) {
+			if (hand[i] == "11") {
 				exist = true;
 			}
 		}
@@ -60,15 +64,13 @@ class Card {
 		myY = y;
 		num = (int) (Math.random() * 13 + 1);
 		suit = (int) (Math.random() * 4 + 1);
-		while (search(Integer.toString(num) + Integer.toString(suit))) {
+		hand[cardIndex] = Integer.toString(num) + Integer.toString(suit);
+		cardIndex++;
+		/* while (search(Integer.toString(num) + Integer.toString(suit))) {
 			//if card alr exists, rerandomize
 			num = (int) (Math.random() * 13 + 1);
 			suit = (int) (Math.random() * 4 + 1);
-		}
-	}
-	public void addToHand() {
-		hand[cardIndex] = Integer.toString(num) + Integer.toString(suit);
-		cardIndex++;
+		} */
 	}
 	public void show() {
 		fill(230);
@@ -215,7 +217,7 @@ class Die //models one single dice cube
 }
 
 */
-  public void settings() { 	size(750,300); }
+  public void settings() { 	size(750,350); }
   static public void main(String[] passedArgs) {
     String[] appletArgs = new String[] { "Dice" };
     if (passedArgs != null) {

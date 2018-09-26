@@ -1,8 +1,9 @@
-String hand[] = new String[13];
+String hand[] = new String[52];
 int cardIndex;
 
+
 void setup() {
-	size(750,300);
+	size(750,350);
 	rectMode(CENTER);
 	textAlign(CENTER,CENTER);
 	noLoop();
@@ -11,21 +12,24 @@ void setup() {
 
 void draw() {
 	cardIndex = 0;
-	for (int x=0; x<13; x++) {
-		Card one = new Card(55*x+40, 150);
-		one.show();
-		one.addToHand();
+	for (int y=0; y<4; y++) {
+		for (int x=0; x<13; x++) {
+			Card one = new Card(55*x+40, y*75+40);
+			one.show();
+		}
 	}
+	println(hand);
+	println(search());
 }
 
 void mousePressed() {
 	redraw();
 }
 
-boolean search(String x) { //true if it exists within hand
+boolean search() { //true if it exists within hand
 		boolean exist = false;
-		for (int i=0; i<13; i++) {
-			if (hand[i] == x) {
+		for (int i=0; i<hand.length; i++) {
+			if (hand[i] == "11") {
 				exist = true;
 			}
 		}
@@ -44,15 +48,13 @@ class Card {
 		myY = y;
 		num = (int) (Math.random() * 13 + 1);
 		suit = (int) (Math.random() * 4 + 1);
-		while (search(Integer.toString(num) + Integer.toString(suit))) {
+		hand[cardIndex] = Integer.toString(num) + Integer.toString(suit);
+		cardIndex++;
+		/* while (search(Integer.toString(num) + Integer.toString(suit))) {
 			//if card alr exists, rerandomize
 			num = (int) (Math.random() * 13 + 1);
 			suit = (int) (Math.random() * 4 + 1);
-		}
-	}
-	void addToHand() {
-		hand[cardIndex] = Integer.toString(num) + Integer.toString(suit);
-		cardIndex++;
+		} */
 	}
 	void show() {
 		fill(230);
