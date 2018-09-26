@@ -1,15 +1,31 @@
+import processing.core.*; 
+import processing.data.*; 
+import processing.event.*; 
+import processing.opengl.*; 
+
+import java.util.HashMap; 
+import java.util.ArrayList; 
+import java.io.File; 
+import java.io.BufferedReader; 
+import java.io.PrintWriter; 
+import java.io.InputStream; 
+import java.io.OutputStream; 
+import java.io.IOException; 
+
+public class Dice extends PApplet {
+
 String hand[] = new String[13];
 int cardIndex;
 
-void setup() {
-	size(750,300);
+public void setup() {
+	
 	rectMode(CENTER);
 	textAlign(CENTER,CENTER);
 	noLoop();
 
 }
 
-void draw() {
+public void draw() {
 	cardIndex = 0;
 	for (int x=0; x<13; x++) {
 		Card one = new Card(55*x+40, 150);
@@ -18,11 +34,11 @@ void draw() {
 	}
 }
 
-void mousePressed() {
+public void mousePressed() {
 	redraw();
 }
 
-boolean search(String x) { //true if it exists within hand
+public boolean search(String x) { //true if it exists within hand
 		boolean exist = false;
 		for (int i=0; i<13; i++) {
 			if (hand[i] == x) {
@@ -50,14 +66,14 @@ class Card {
 			suit = (int) (Math.random() * 4 + 1);
 		}
 	}
-	void addToHand() {
+	public void addToHand() {
 		hand[cardIndex] = Integer.toString(num) + Integer.toString(suit);
 		cardIndex++;
 	}
-	void show() {
+	public void show() {
 		fill(230);
 		stroke(0);
-		rect(myX, myY, cardW, cardW*1.4, cardW/7);
+		rect(myX, myY, cardW, cardW*1.4f, cardW/7);
 		fill(10);
 		if (num > 1 && num < 11) {
 			nonnum = Integer.toString(num);
@@ -80,7 +96,7 @@ class Card {
 			if (suit == 3) {
 				ellipse(myX-cardW/12, myY-cardW/20,cardW/5,cardW/5);
 				ellipse(myX+cardW/12, myY-cardW/20,cardW/5,cardW/5);
-				triangle(myX-cardW/5, myY-cardW/15, myX+cardW/5, myY-cardW/15, myX, myY+cardW/4.5);
+				triangle(myX-cardW/5, myY-cardW/15, myX+cardW/5, myY-cardW/15, myX, myY+cardW/4.5f);
 			}
 		} else {
 			fill(0);
@@ -93,17 +109,17 @@ class Card {
 			if (suit == 4) {
 				ellipse(myX-cardW/12, myY+cardW/20,cardW/5,cardW/5);
 				ellipse(myX+cardW/12, myY+cardW/20,cardW/5,cardW/5);
-				triangle(myX-cardW/5, myY+cardW/15, myX+cardW/5, myY+cardW/15, myX, myY-cardW/4.5);
+				triangle(myX-cardW/5, myY+cardW/15, myX+cardW/5, myY+cardW/15, myX, myY-cardW/4.5f);
 				rect(myX, myY+cardW/8, cardW/15, cardW/5);
 			}
 		}
 
-		text(nonnum, myX - cardW/3.1, myY - cardW / 2);
+		text(nonnum, myX - cardW/3.1f, myY - cardW / 2);
 		pushMatrix();
 		translate(myX, myY);
 		rotate(PI);
 		translate(-myX, -myY);
-		text(nonnum, myX - cardW/3.1, myY - cardW / 2);
+		text(nonnum, myX - cardW/3.1f, myY - cardW / 2);
 		popMatrix();
 	}
 }
@@ -199,3 +215,13 @@ class Die //models one single dice cube
 }
 
 */
+  public void settings() { 	size(750,300); }
+  static public void main(String[] passedArgs) {
+    String[] appletArgs = new String[] { "Dice" };
+    if (passedArgs != null) {
+      PApplet.main(concat(appletArgs, passedArgs));
+    } else {
+      PApplet.main(appletArgs);
+    }
+  }
+}
