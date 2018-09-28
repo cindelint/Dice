@@ -1,4 +1,4 @@
-int hand[] = new int[52];
+int hand[] = new int[13];
 int cardIndex;
 
 
@@ -11,13 +11,18 @@ void setup() {
 }
 
 void draw() {
+	background(22, 79, 11);
+
 	cardIndex = 0;
-	for (int y=0; y<4; y++) {
+	// for (int y=0; y<4; y++) {
 		for (int x=0; x<13; x++) {
-			Card one = new Card(55*x+45, y*75+50);
+			Card one = new Card(55*x+45, 100);
 			one.show();
 		}
-	}
+	// }
+	fill(0);
+	textSize(13);
+	text(searchFlush(1), 375, 325);
 }
 
 void mousePressed() {
@@ -32,6 +37,22 @@ boolean search(int x) { //true if it exists within hand
 			}
 		}
 		return exist;
+}
+
+String searchFlush(int x) {
+	int flushV[] = new int[13];
+	int count = 0;
+	for (int i=0; i<cardIndex; i++) {
+		if (hand[i] % 10 == x) {
+			flushV[i] = hand[i];
+			count++;
+		}
+	}
+	if (count >= 5) {
+		return "diamond flush exists";
+	} else {
+		return "diamond flush doesn't exist";
+	}
 }
 
 class Card {
