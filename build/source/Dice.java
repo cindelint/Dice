@@ -36,9 +36,8 @@ public void draw() {
 			one.show();
 		}
 	// }
-	fill(0);
-	textSize(13);
-	text(searchFlush(1), 375, 325);
+
+	searchFlush(2);
 }
 
 public void mousePressed() {
@@ -55,25 +54,30 @@ public boolean search(int x) { //true if it exists within hand
 		return exist;
 }
 
-public String searchFlush(int x) {
+public void searchFlush(int x) {
 	int flushV[] = new int[13];
 	int count = 0;
 	for (int i=0; i<cardIndex; i++) {
 		if (hand[i] % 10 == x) {
-			flushV[i] = hand[i];
+			flushV[count] = hand[i];
 			count++;
 		}
 	}
+
+	fill(0);
+	textSize(13);
 	if (count >= 5) {
-		return "diamond flush exists";
+		text("club flush exists", 375, 250);
+		for (int i=0; i<count; i++) {
+			drawCard(270+45*i,300,40,flushV[i]);
+		}
 	} else {
-		return "diamond flush doesn't exist";
+		text("club flush doesn't exist", 375, 325);
 	}
 }
 
 class Card {
 	int num;
-	String nonnum; //for displaying the letter values
 	int suit; // 1 - diamond, 2 - clover, 3 - heart, 4 - spade
 	int cardV;
 	int myX, myY;
@@ -95,60 +99,63 @@ class Card {
 		cardIndex++;
 	}
 	public void show() {
-		fill(230);
-		stroke(0);
-		rect(myX, myY, cardW, cardW*1.4f, cardW/7);
-		fill(10);
-		if (num > 1 && num < 11) {
-			nonnum = Integer.toString(num);
-		} else if (num == 1) {
-			nonnum = "A";
-		} else if (num == 11) {
-			nonnum = "J";
-		} else if (num == 12) {
-			nonnum = "Q";
-		} else if (num == 13) {
-			nonnum = "K";
-		}
-
-		noStroke();
-		if (suit == 1 || suit == 3) {
-			fill(255,0,0);
-			if (suit == 1) {
-				quad(myX-cardW/6, myY, myX, myY-cardW/4, myX+cardW/6, myY, myX, myY+cardW/4);
-			}
-			if (suit == 3) {
-				ellipse(myX-cardW/12, myY-cardW/20,cardW/5,cardW/5);
-				ellipse(myX+cardW/12, myY-cardW/20,cardW/5,cardW/5);
-				triangle(myX-cardW/5, myY-cardW/15, myX+cardW/5, myY-cardW/15, myX, myY+cardW/4.5f);
-			}
-		} else {
-			fill(0);
-			if (suit == 2) {
-				ellipse(myX, myY-cardW/9, cardW/5, cardW/5);
-				ellipse(myX-cardW/10, myY, cardW/5, cardW/5);
-				ellipse(myX+cardW/10, myY, cardW/5, cardW/5);
-				rect(myX, myY+cardW/10, cardW/15, cardW/5);
-			}
-			if (suit == 4) {
-				ellipse(myX-cardW/12, myY+cardW/20,cardW/5,cardW/5);
-				ellipse(myX+cardW/12, myY+cardW/20,cardW/5,cardW/5);
-				triangle(myX-cardW/5, myY+cardW/15, myX+cardW/5, myY+cardW/15, myX, myY-cardW/4.5f);
-				rect(myX, myY+cardW/8, cardW/15, cardW/5);
-			}
-		}
-
-		text(nonnum, myX - cardW/3.1f, myY - cardW / 2);
-		pushMatrix();
-		translate(myX, myY);
-		rotate(PI);
-		translate(-myX, -myY);
-		text(nonnum, myX - cardW/3.1f, myY - cardW / 2);
-		popMatrix();
+		drawCard(myX, myY, cardW, cardV);
 	}
 }
 
+public void drawCard(float x, float y, float w, int card) {
+	fill(230);
+	stroke(0);
+	rect(x, y, w, w*1.4f, w/7);
+	fill(10);
+	String nonnum;
+	if (card/10 > 1 && card/10 < 11) {
+		nonnum = Integer.toString(card/10);
+	} else if (card/10 == 1) {
+		nonnum = "A";
+	} else if (card/10 == 11) {
+		nonnum = "J";
+	} else if (card/10 == 12) {
+		nonnum = "Q";
+	} else /* (card/10 == 13)*/ {
+		nonnum = "K";
+	}
 
+	noStroke();
+	if (card%10 == 1 || card%10 == 3) {
+		fill(255,0,0);
+		if (card%10 == 1) {
+			quad(x-w/6, y, x, y-w/4, x+w/6, y, x, y+w/4);
+		}
+		if (card%10 == 3) {
+			ellipse(x-w/12, y-w/20,w/5,w/5);
+			ellipse(x+w/12, y-w/20,w/5,w/5);
+			triangle(x-w/5, y-w/15, x+w/5, y-w/15, x, y+w/4.5f);
+		}
+	} else {
+		fill(0);
+		if (card%10 == 2) {
+			ellipse(x, y-w/9, w/5, w/5);
+			ellipse(x-w/10, y, w/5, w/5);
+			ellipse(x+w/10, y, w/5, w/5);
+			rect(x, y+w/10, w/15, w/5);
+		}
+		if (card%10 == 4) {
+			ellipse(x-w/12, y+w/20,w/5,w/5);
+			ellipse(x+w/12, y+w/20,w/5,w/5);
+			triangle(x-w/5, y+w/15, x+w/5, y+w/15, x, y-w/4.5f);
+			rect(x, y+w/8, w/15, w/5);
+		}
+	}
+
+	text(nonnum, x - w/3.1f, y - w / 2);
+	pushMatrix();
+	translate(x, y);
+	rotate(PI);
+	translate(-x, -y);
+	text(nonnum, x - w/3.1f, y - w / 2);
+	popMatrix();
+}
 
 
 /* NORMAL DICE PROGRAM
