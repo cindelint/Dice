@@ -88,12 +88,12 @@ class Card {
 		myY = y;
 		num = (int) (Math.random() * 13 + 1);
 		suit = (int) (Math.random() * 4 + 1);
-		cardV = num*10+suit;
+		cardV = num*10 + suit;
 		while (search(cardV)) {
 			//if card alr exists, rerandomize
 			num = (int) (Math.random() * 13 + 1);
 			suit = (int) (Math.random() * 4 + 1);
-			cardV = num*10+suit;;
+			cardV = num*10+suit;
 		}
 		hand[cardIndex] = cardV;
 		cardIndex++;
