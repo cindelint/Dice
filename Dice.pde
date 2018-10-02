@@ -4,7 +4,7 @@ String suitNames[] = new String[] {"diamond", "club", "heart", "spade"};
 
 
 void setup() {
-	size(750,600);
+	size(750,300);
 	rectMode(CENTER);
 	textAlign(CENTER,CENTER);
 	noLoop();
@@ -21,9 +21,7 @@ void draw() {
 			one.show();
 		}
 	// }
-	for (int i=0; i<4; i++) {
-		searchFlush(i+1, 250+85*i);
-	}
+	searchFlush(3, 200);
 }
 
 void mousePressed() {
@@ -58,7 +56,7 @@ void searchFlush(int x, float yPos) {
 				drawCard(415-count*25+45*i,yPos+40,40,flushV[i]);
 		}
 	} else {
-		text(suitNames[x-1] + " flush doesn't exist", 375, yPos);
+		text(suitNames[x-1] + " flush doesn't exist", 375, yPos+40);
 	}
 }
 

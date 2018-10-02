@@ -37,9 +37,7 @@ public void draw() {
 			one.show();
 		}
 	// }
-	for (int i=0; i<4; i++) {
-		searchFlush(i+1, 250+85*i);
-	}
+	searchFlush(3, 200);
 }
 
 public void mousePressed() {
@@ -74,7 +72,7 @@ public void searchFlush(int x, float yPos) {
 				drawCard(415-count*25+45*i,yPos+40,40,flushV[i]);
 		}
 	} else {
-		text(suitNames[x-1] + " flush doesn't exist", 375, yPos);
+		text(suitNames[x-1] + " flush doesn't exist", 375, yPos+40);
 	}
 }
 
@@ -248,7 +246,7 @@ class Die //models one single dice cube
 }
 
 */
-  public void settings() { 	size(750,600); }
+  public void settings() { 	size(750,300); }
   static public void main(String[] passedArgs) {
     String[] appletArgs = new String[] { "Dice" };
     if (passedArgs != null) {
