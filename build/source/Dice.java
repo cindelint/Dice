@@ -108,7 +108,7 @@ public void drawCard(float x, float y, float w, int card) {
 	stroke(0);
 	rect(x, y, w, w*1.4f, w/7);
 	fill(10);
-	String nonnum;
+	String nonnum = "0";
 	if (card/10 > 1 && card/10 < 11) {
 		nonnum = Integer.toString(card/10);
 	} else if (card/10 == 1) {
@@ -117,7 +117,7 @@ public void drawCard(float x, float y, float w, int card) {
 		nonnum = "J";
 	} else if (card/10 == 12) {
 		nonnum = "Q";
-	} else /* (card/10 == 13)*/ {
+	} else if (card/10 == 13) {
 		nonnum = "K";
 	}
 
