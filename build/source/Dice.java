@@ -103,44 +103,44 @@ class Card {
 	}
 }
 
-public void drawCard(float x, float y, float w, int card) {
+public void drawCard(float x, float y, float w, int c) {
 	fill(230);
 	stroke(0);
 	rect(x, y, w, w*1.4f, w/7);
 	fill(10);
 	String nonnum = "0";
-	if (card/10 > 1 && card/10 < 11) {
-		nonnum = Integer.toString(card/10);
-	} else if (card/10 == 1) {
+	if (c/10 > 1 && c/10 < 11) {
+		nonnum = Integer.toString(c/10);
+	} else if (c/10 == 1) {
 		nonnum = "A";
-	} else if (card/10 == 11) {
+	} else if (c/10 == 11) {
 		nonnum = "J";
-	} else if (card/10 == 12) {
+	} else if (c/10 == 12) {
 		nonnum = "Q";
-	} else if (card/10 == 13) {
+	} else if (c/10 == 13) {
 		nonnum = "K";
 	}
 
 	noStroke();
-	if (card%10 == 1 || card%10 == 3) {
+	if (c%10 == 1 || c%10 == 3) {
 		fill(255,0,0);
-		if (card%10 == 1) {
+		if (c%10 == 1) {
 			quad(x-w/6, y, x, y-w/4, x+w/6, y, x, y+w/4);
 		}
-		if (card%10 == 3) {
+		if (c%10 == 3) {
 			ellipse(x-w/12, y-w/20,w/5,w/5);
 			ellipse(x+w/12, y-w/20,w/5,w/5);
 			triangle(x-w/5, y-w/15, x+w/5, y-w/15, x, y+w/4.5f);
 		}
 	} else {
 		fill(0);
-		if (card%10 == 2) {
+		if (c%10 == 2) {
 			ellipse(x, y-w/9, w/5, w/5);
 			ellipse(x-w/10, y, w/5, w/5);
 			ellipse(x+w/10, y, w/5, w/5);
 			rect(x, y+w/10, w/15, w/5);
 		}
-		if (card%10 == 4) {
+		if (c%10 == 4) {
 			ellipse(x-w/12, y+w/20,w/5,w/5);
 			ellipse(x+w/12, y+w/20,w/5,w/5);
 			triangle(x-w/5, y+w/15, x+w/5, y+w/15, x, y-w/4.5f);
