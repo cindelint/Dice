@@ -19,7 +19,6 @@ void draw() {
 		for (int x=0; x<13; x++) {
 			Card one = new Card(55*x+45, 100);
 			one.show();
-			println(one.cardV);
 		}
 	// }
 	searchFlush(3, 200);
@@ -105,6 +104,8 @@ void drawCard(float x, float y, float w, int c) {
 	} else if (c/10 == 13) {
 		nonnum = "K";
 	}
+	println(c);
+	println(c/10);
 
 	noStroke();
 	if (c%10 == 1 || c%10 == 3) {
