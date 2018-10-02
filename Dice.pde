@@ -19,6 +19,7 @@ void draw() {
 		for (int x=0; x<13; x++) {
 			Card one = new Card(55*x+45, 100);
 			one.show();
+			println(one.cardV);
 		}
 	// }
 	searchFlush(3, 200);
