@@ -1,9 +1,10 @@
 int hand[] = new int[13];
 int cardIndex;
+String suitNames[] = new String[] {"diamond", "club", "heart", "spade"};
 
 
 void setup() {
-	size(750,350);
+	size(750,600);
 	rectMode(CENTER);
 	textAlign(CENTER,CENTER);
 	noLoop();
@@ -20,8 +21,9 @@ void draw() {
 			one.show();
 		}
 	// }
-
-	searchFlush(2);
+	for (int i=0; i<4; i++) {
+		searchFlush(i+1, 250+85*i);
+	}
 }
 
 void mousePressed() {
@@ -38,7 +40,7 @@ boolean search(int x) { //true if it exists within hand
 		return exist;
 }
 
-void searchFlush(int x) {
+void searchFlush(int x, float yPos) {
 	int flushV[] = new int[13];
 	int count = 0;
 	for (int i=0; i<cardIndex; i++) {
@@ -51,12 +53,12 @@ void searchFlush(int x) {
 	fill(0);
 	textSize(13);
 	if (count >= 5) {
-		text("club flush exists", 375, 250);
+		text(suitNames[x-1] + " flush exists", 375, yPos);
 		for (int i=0; i<count; i++) {
-			drawCard(270+45*i,300,40,flushV[i]);
+				drawCard(415-count*25+45*i,yPos+40,40,flushV[i]);
 		}
 	} else {
-		text("club flush doesn't exist", 375, 325);
+		text(suitNames[x-1] + " flush doesn't exist", 375, yPos);
 	}
 }
 
