@@ -24,7 +24,6 @@ public void setup() {
 	rectMode(CENTER);
 	textAlign(CENTER,CENTER);
 	noLoop();
-
 }
 
 public void draw() {

@@ -8,7 +8,6 @@ void setup() {
 	rectMode(CENTER);
 	textAlign(CENTER,CENTER);
 	noLoop();
-
 }
 
 void draw() {
