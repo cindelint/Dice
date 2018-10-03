@@ -94,7 +94,7 @@ void drawCard(float x, float y, float w, int c) {
 	fill(10);
 	String nonnum = "0";
 	if (cSuit > 1 && cSuit < 11) {
-		nonnum = Integer.toString(cSuit);
+		nonnum = String.valueOf(cSuit);
 	} else if (cSuit == 1) {
 		nonnum = "A";
 	} else if (cSuit == 11) {
@@ -104,8 +104,6 @@ void drawCard(float x, float y, float w, int c) {
 	} else if (cSuit == 13) {
 		nonnum = "K";
 	}
-	println(c);
-	println(cSuit);
 
 	noStroke();
 	if (c%10 == 1 || c%10 == 3) {
