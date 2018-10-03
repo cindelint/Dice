@@ -104,24 +104,25 @@ class Card {
 }
 
 public void drawCard(float x, float y, float w, int c) {
+	int cSuit = (int) (c/10);
 	fill(230);
 	stroke(0);
 	rect(x, y, w, w*1.4f, w/7);
 	fill(10);
 	String nonnum = "0";
-	if (c/10 > 1 && c/10 < 11) {
-		nonnum = Integer.toString(c/10);
-	} else if (c/10 == 1) {
+	if (cSuit > 1 && cSuit < 11) {
+		nonnum = Integer.toString(cSuit);
+	} else if (cSuit == 1) {
 		nonnum = "A";
-	} else if (c/10 == 11) {
+	} else if (cSuit == 11) {
 		nonnum = "J";
-	} else if (c/10 == 12) {
+	} else if (cSuit == 12) {
 		nonnum = "Q";
-	} else if (c/10 == 13) {
+	} else if (cSuit == 13) {
 		nonnum = "K";
 	}
 	println(c);
-	println(c/10);
+	println(cSuit);
 
 	noStroke();
 	if (c%10 == 1 || c%10 == 3) {
