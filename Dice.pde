@@ -94,7 +94,7 @@ void drawCard(float x, float y, float w, int c) {
 	fill(10);
 	String nonnum = "0";
 	if (cNum > 1 && cNum < 11) {
-		nonnum = (Integer.toString(cNum));
+		nonnum = "" + cNum + "";
 	} else if (cNum == 1) {
 		nonnum = "A";
 	} else if (cNum == 11) {
