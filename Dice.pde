@@ -87,21 +87,21 @@ class Card {
 }
 
 void drawCard(float x, float y, float w, int c) {
-	int cSuit = (int) (c/10);
+	int cNum = (int) (c/10);
 	fill(230);
 	stroke(0);
 	rect(x, y, w, w*1.4, w/7);
 	fill(10);
 	String nonnum = "0";
-	if (cSuit > 1 && cSuit < 11) {
-		nonnum = String.valueOf(cSuit);
-	} else if (cSuit == 1) {
+	if (cNum > 1 && cNum < 11) {
+		nonnum = String.valueOf(cNum);
+	} else if (cNum == 1) {
 		nonnum = "A";
-	} else if (cSuit == 11) {
+	} else if (cNum == 11) {
 		nonnum = "J";
-	} else if (cSuit == 12) {
+	} else if (cNum == 12) {
 		nonnum = "Q";
-	} else if (cSuit == 13) {
+	} else if (cNum == 13) {
 		nonnum = "K";
 	}
 
